@@ -13,8 +13,6 @@
        name="{{ item.name }}"
        extra_args="{{ item.extra_args | default(omit)}}"
       with_items:
-         - name: github3.py
-           extra_args: "--pre"
          - name: semver
          - name: uritemplate
 
