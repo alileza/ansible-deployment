@@ -58,6 +58,11 @@ def main():
     deployment_dir      = module.params['path']
     keep_last           = module.params['keep_last']
     semantic_versioning = module.params['use_semantic_versioning']
+
+    # Remove everything older than 14 days
+    remove_old_stuff_cmd = 'find %s -maxdepth 1 -type d -mtime +14 -exec rm -rf "{}" \;'
+    exec_command(module, remove_old_stuff_cmd, deployment_dir)
+
     # keep deployment info
     list_deployment = []
     broken_deployment_dir = []
