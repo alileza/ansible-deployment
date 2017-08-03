@@ -25,6 +25,13 @@
   notify:
      - restart app
 
+- name: run pre-deployment comands
+  command: "{{ item }}"
+  args:
+    chdir: "{{ deployment_dir_work }}"
+  with_items: "{{ deployment_pre_curlink_commands | default([]) }}"
+  when: deployment_pre_curlink_commands is defined
+
 - name: current version | Create current symlink
   file:
     src="{{ deployment_dir_work }}"
