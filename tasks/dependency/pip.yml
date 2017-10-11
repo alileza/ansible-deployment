@@ -6,3 +6,8 @@
   become_user: "{{ deployment_pip_user }}"
   notify:
      - restart app
+     
+- name: Upgrade pip
+  pip:
+    name: pip
+    extra_args: --upgrade
